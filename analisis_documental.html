@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis PSYOP — Second Childhood / RT Documentary 2023</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #0d1117; --ink-muted: #4a5568; --ink-faint: #8896a8;
+  --surface: #f8f7f4; --card: #ffffff; --rule: #dde1e8;
+  --accent: #c0392b; --accent-soft: #fdf0ef;
+  --blue: #1a3a5c; --blue-mid: #2e6da4; --blue-soft: #edf4fb;
+  --green: #1a5c2a; --green-soft: #edf7f0;
+  --amber: #7a4a00; --amber-soft: #fef8ed;
+  --purple: #4a1d8c; --purple-soft: #f0ebfc;
+  --sidebar-w: 240px;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--surface); color: var(--ink); font-size: 15px; line-height: 1.75; }
+
+/* ── TOP BAR ── */
+.top-bar {
+  position: sticky; top: 0; z-index: 100;
+  background: #1a0a0a;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1.5rem; height: 44px; font-size: 12px;
+}
+.top-bar-links { display: flex; gap: 8px; }
+.top-bar a {
+  color: rgba(255,255,255,0.7); text-decoration: none; font-size: 11.5px;
+  padding: 5px 10px; border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 4px; transition: all 0.15s; white-space: nowrap;
+}
+.top-bar a:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.top-bar-center { font-weight: 500; font-size: 12px; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; }
+.top-bar-badge {
+  font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: #fff; background: var(--accent); padding: 3px 8px; border-radius: 3px; font-weight: 700;
+}
+
+/* ── LAYOUT ── */
+.layout { display: flex; }
+.sidebar {
+  width: var(--sidebar-w); flex-shrink: 0;
+  position: sticky; top: 44px; height: calc(100vh - 44px);
+  overflow-y: auto; background: var(--card);
+  border-right: 1px solid var(--rule); padding: 1.25rem 0;
+}
+.sidebar::-webkit-scrollbar { width: 3px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--rule); }
+.content { flex: 1; min-width: 0; }
+
+.nav-group { padding: 0.4rem 1.25rem 0.2rem; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--ink-faint); margin-top: 0.6rem; }
+.nav-group.danger { color: var(--accent); opacity: 0.8; }
+.nav-link { display: block; padding: 4px 1.25rem 4px 1.4rem; font-size: 12px; color: var(--ink-muted); text-decoration: none; border-left: 2px solid transparent; transition: all 0.15s; line-height: 1.4; }
+.nav-link:hover { color: var(--ink); background: var(--accent-soft); }
+.nav-link.active { color: var(--accent); border-left-color: var(--accent); background: var(--accent-soft); font-weight: 500; }
+.nav-rule { height: 1px; background: var(--rule); margin: 0.6rem 1.25rem; }
+
+/* ── HERO ── */
+.hero {
+  background: #0d0505; padding: 3rem 3rem 2.5rem;
+  position: relative; overflow: hidden; border-bottom: 2px solid var(--accent);
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--accent) 0%, #8b1a1a 50%, var(--blue) 100%);
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(192,57,43,0.15); border: 1px solid rgba(192,57,43,0.35);
+  color: #f87171; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 4px; margin-bottom: 1rem;
+}
+.hero-badge::before { content: '⬤'; font-size: 6px; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); line-height: 1.2; color: #fff; margin-bottom: 0.4rem; }
+.hero h1 em { font-style: italic; color: #f87171; }
+.hero-sub { font-size: 0.9rem; color: rgba(255,255,255,0.55); max-width: 580px; margin-bottom: 1.5rem; }
+.hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 11.5px; color: rgba(255,255,255,0.35); border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.75rem; }
+.hero-meta strong { color: rgba(255,255,255,0.55); font-weight: 500; }
+
+/* ── MAIN ── */
+.main { padding: 2rem 3rem 4rem; max-width: 800px; }
+
+/* ── SECTION HEADINGS ── */
+.sec-anchor { scroll-margin-top: 56px; }
+h2.sec {
+  font-family: 'DM Serif Display', serif; font-size: 1.3rem;
+  color: var(--ink); margin: 2.5rem 0 0.6rem;
+  border-bottom: 1px solid var(--rule); padding-bottom: 0.4rem;
+}
+h3.sub { font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--accent); margin: 1.5rem 0 0.5rem; }
+p { color: var(--ink-muted); margin-bottom: 0.85rem; }
+p:last-child { margin-bottom: 0; }
+em { font-style: italic; }
+strong { font-weight: 600; color: var(--ink); }
+
+/* ── METRICS STRIP ── */
+.metrics-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1px; background: var(--rule);
+  border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin: 1.5rem 0;
+}
+.metric-cell { background: var(--card); padding: 1rem 1.1rem; }
+.metric-label { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; margin-bottom: 0.3rem; }
+.metric-value { font-family: 'DM Serif Display', serif; font-size: 1.7rem; line-height: 1; margin-bottom: 0.15rem; }
+.metric-value.red { color: var(--accent); }
+.metric-value.blue { color: var(--blue); }
+.metric-note { font-size: 11px; color: var(--ink-faint); }
+
+/* ── CALLOUTS ── */
+.callout { border-left: 3px solid var(--blue-mid); background: var(--blue-soft); padding: 0.9rem 1.1rem; border-radius: 0 8px 8px 0; margin: 1.25rem 0; }
+.callout.danger { border-left-color: var(--accent); background: var(--accent-soft); }
+.callout.warn { border-left-color: var(--amber); background: var(--amber-soft); }
+.callout.dark { border-left-color: #555; background: #1e1e1e; }
+.callout-label { font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; margin-bottom: 0.3rem; }
+.callout .callout-label { color: var(--blue-mid); }
+.callout.danger .callout-label { color: var(--accent); }
+.callout.warn .callout-label { color: var(--amber); }
+.callout.dark .callout-label { color: #aaa; }
+.callout p { font-size: 0.86rem; margin: 0; }
+.callout.danger p { color: var(--ink); }
+.callout.dark p { color: #ccc; font-family: 'DM Serif Display', serif; font-style: italic; font-size: 0.92rem; }
+
+/* ── LAYERS ── */
+.layers { display: grid; grid-template-columns: 1fr; gap: 0; border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin: 1.25rem 0; }
+.layer-row { display: grid; grid-template-columns: 100px 1fr; border-bottom: 1px solid var(--rule); }
+.layer-row:last-child { border-bottom: none; }
+.layer-num { background: var(--ink); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0.75rem 0.5rem; text-align: center; }
+.layer-num .ln { font-family: 'DM Serif Display', serif; font-size: 1.6rem; line-height: 1; color: rgba(255,255,255,0.25); }
+.layer-num .lt { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 2px; }
+.layer-body { padding: 0.75rem 1rem; background: var(--card); }
+.layer-title { font-size: 0.82rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
+.layer-desc { font-size: 0.78rem; color: var(--ink-muted); font-family: 'DM Sans', monospace; }
+
+/* ── TECHNIQUE CARDS ── */
+.tech-card {
+  border: 1px solid var(--rule); border-radius: 10px; overflow: hidden;
+  margin: 1.5rem 0; background: var(--card);
+}
+.tech-header {
+  display: grid; grid-template-columns: 44px 1fr auto;
+  align-items: center; gap: 0;
+  background: #0d0505; padding: 0.75rem 1rem;
+}
+.tech-num { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: rgba(255,255,255,0.2); }
+.tech-title { font-size: 0.88rem; font-weight: 700; color: #fff; }
+.tech-code { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--accent); background: rgba(192,57,43,0.15); border: 1px solid rgba(192,57,43,0.3); padding: 2px 7px; border-radius: 3px; }
+.tech-body { padding: 1rem; }
+.tech-quote {
+  background: #f5f0eb; border-left: 3px solid var(--amber);
+  padding: 0.7rem 0.9rem; margin-bottom: 0.75rem; border-radius: 0 6px 6px 0;
+}
+.tech-quote .ru { font-size: 11.5px; color: var(--ink); font-style: italic; margin-bottom: 0.25rem; line-height: 1.5; }
+.tech-quote .es { font-size: 11px; color: var(--ink-faint); }
+.tech-analysis { font-size: 0.82rem; color: var(--ink-muted); }
+
+/* ── SOURCES TABLE ── */
+.tbl-wrap { overflow-x: auto; margin: 1.25rem 0; border-radius: 10px; border: 1px solid var(--rule); }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; background: var(--card); }
+thead tr { background: var(--ink); }
+thead th { color: #fff; padding: 9px 12px; text-align: left; font-weight: 500; font-size: 11px; letter-spacing: 0.04em; border-right: 1px solid rgba(255,255,255,0.1); }
+thead th:last-child { border-right: none; }
+tbody tr { border-bottom: 1px solid var(--rule); }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: #fafaf8; }
+td { padding: 8px 12px; color: var(--ink-muted); vertical-align: top; border-right: 1px solid var(--rule); font-size: 12px; }
+td:last-child { border-right: none; }
+td strong { color: var(--ink); font-weight: 600; }
+td a { color: var(--blue-mid); text-decoration: none; font-size: 11.5px; }
+td a:hover { text-decoration: underline; }
+.code-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; padding: 1px 6px; border-radius: 3px; }
+.code-n { background: var(--blue-soft); color: var(--blue-mid); }
+.code-t { background: var(--accent-soft); color: var(--accent); }
+
+/* ── ARGOS TABLE ── */
+.argos-grid { display: grid; grid-template-columns: 1fr; gap: 0; border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin: 1.25rem 0; }
+.argos-row { display: grid; grid-template-columns: 60px 80px 1fr 1fr; border-bottom: 1px solid var(--rule); }
+.argos-row:last-child { border-bottom: none; }
+.argos-row.header { background: var(--ink); }
+.argos-row.header div { padding: 8px 10px; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+.argos-cell { padding: 8px 10px; font-size: 11.5px; color: var(--ink-muted); border-right: 1px solid var(--rule); }
+.argos-cell:last-child { border-right: none; }
+.argos-cell.type { font-weight: 700; font-size: 10px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em; }
+.argos-cell.quote { font-style: italic; font-size: 11px; color: var(--ink-faint); }
+
+/* ── VALIDATION QS ── */
+.q-list { list-style: none; padding: 0; }
+.q-item { display: grid; grid-template-columns: 28px 1fr; gap: 0.75rem; padding: 1rem 0; border-bottom: 1px solid var(--rule); align-items: start; }
+.q-item:last-child { border-bottom: none; }
+.q-num { width: 28px; height: 28px; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+.q-title { font-size: 0.88rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+.q-body { font-size: 0.82rem; color: var(--ink-muted); }
+
+/* ── CONCLUSIONS ── */
+.conclusion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0; }
+@media (max-width: 600px) { .conclusion-grid { grid-template-columns: 1fr; } }
+.conclusion-card { border-radius: 10px; padding: 1.1rem; border: 1px solid var(--rule); background: var(--card); }
+.conclusion-card h4 { font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; }
+.conclusion-card.f1 h4 { color: var(--blue-mid); }
+.conclusion-card.f2 h4 { color: var(--accent); }
+.conclusion-card.f3 h4 { color: var(--amber); }
+.conclusion-card.f4 h4 { color: var(--green); }
+.conclusion-card p { font-size: 0.81rem; color: var(--ink-muted); }
+
+/* ── TRANSCRIPT BANNER ── */
+.transcript-banner {
+  background: #0d0505; border: 1px solid rgba(192,57,43,0.3);
+  border-radius: 10px; padding: 1.25rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap; margin: 2rem 0; text-decoration: none;
+  transition: border-color 0.15s;
+}
+.transcript-banner:hover { border-color: var(--accent); }
+.tb-label { font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 3px; }
+.tb-title { font-size: 0.95rem; font-weight: 600; color: #fff; }
+.tb-sub { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.tb-icon { font-size: 1.4rem; color: rgba(255,255,255,0.2); flex-shrink: 0; }
+
+/* ── NAV BANNERS ── */
+.nav-banners { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2.5rem 0 0; }
+@media (max-width: 560px) { .nav-banners { grid-template-columns: 1fr; } }
+.nav-banner { border-radius: 10px; padding: 1.1rem 1.25rem; text-decoration: none; display: block; transition: opacity 0.15s; }
+.nav-banner:hover { opacity: 0.88; }
+.nav-banner.b1 { background: var(--blue); }
+.nav-banner.b2 { background: #1a1a1a; border: 1px solid var(--rule); }
+.nb-label { font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 3px; }
+.nb-title { font-size: 0.88rem; font-weight: 600; color: #fff; }
+
+/* ── REFS ── */
+.ref-section { margin-top: 2rem; }
+.ref-item { display: grid; grid-template-columns: 72px 1fr; padding: 7px 0; border-bottom: 1px solid var(--rule); font-size: 11.5px; align-items: baseline; }
+.ref-item:last-child { border-bottom: none; }
+.ref-tag { font-weight: 700; color: var(--accent); font-size: 12px; }
+.ref-body { color: var(--ink-muted); line-height: 1.5; }
+.ref-body a { color: var(--blue-mid); text-decoration: none; }
+.ref-body a:hover { text-decoration: underline; }
+a.backref { display: inline-block; margin-left: 6px; font-size: 10px; font-weight: 600; color: var(--ink-faint); padding: 1px 5px; border: 1px solid var(--rule); border-radius: 3px; text-decoration: none; transition: all 0.15s; }
+a.backref:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+sup a.citeref { font-size: 10px; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0 1px; vertical-align: super; line-height: 0; }
+sup a.citeref:hover { text-decoration: underline; }
+
+footer { border-top: 1px solid var(--rule); background: var(--card); padding: 1.5rem 3rem; font-size: 11.5px; color: var(--ink-faint); }
+
+@media (max-width: 780px) { .sidebar { display: none; } .main { padding: 1.5rem; } .hero { padding: 2rem 1.5rem; } .nav-banners { grid-template-columns: 1fr; } }
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+.hero { animation: fadeIn 0.4s ease both; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-links">
+    <a href="index.html">← Resumen ejecutivo</a>
+    <a href="informe_completo.html">Informe completo</a>
+  </div>
+  <span class="top-bar-center">Sistema Argos · Propaganda Detector 2</span>
+  <span class="top-bar-badge">PSYOP Analysis</span>
+</div>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" aria-label="Índice del análisis">
+    <div class="nav-group">Encabezado</div>
+    <a class="nav-link" href="#exec">1. Resumen ejecutivo</a>
+    <a class="nav-link" href="#contexto">2. Contexto estratégico</a>
+
+    <div class="nav-rule"></div>
+    <div class="nav-group danger">Análisis técnico</div>
+    <a class="nav-link" href="#arquitectura">3. Arquitectura narrativa</a>
+    <a class="nav-link" href="#tecnica1">T1 · Acusación espejo</a>
+    <a class="nav-link" href="#tecnica2">T2 · Cherry-picking</a>
+    <a class="nav-link" href="#tecnica3">T3 · Relativismo jurídico</a>
+    <a class="nav-link" href="#tecnica4">T4 · Sarcasmo estratégico</a>
+    <a class="nav-link" href="#tecnica5">T5 · Inversión semántica</a>
+    <a class="nav-link" href="#tecnica6">T6 · Whataboutism</a>
+    <a class="nav-link" href="#tecnica7">T7 · Falacia anecdótica</a>
+
+    <div class="nav-rule"></div>
+    <div class="nav-group">Evaluación</div>
+    <a class="nav-link" href="#fuentes">4. Fuentes circulares</a>
+    <a class="nav-link" href="#omisiones">5. Lo que no muestra</a>
+    <a class="nav-link" href="#impacto">6. Impacto geopolítico</a>
+    <a class="nav-link" href="#argos">7. Clasificación Argos</a>
+    <a class="nav-link" href="#validacion">8. Preguntas de validación</a>
+    <a class="nav-link" href="#contraste">9. Fuentes de contraste</a>
+    <a class="nav-link" href="#conclusion">10. Conclusión</a>
+
+    <div class="nav-rule"></div>
+    <div class="nav-group">Documentación</div>
+    <a class="nav-link" href="#transcripcion">Transcripción</a>
+    <a class="nav-link" href="#refs">Referencias</a>
+  </nav>
+
+  <div class="content">
+    <header class="hero">
+      <div class="hero-badge">Operación de Información Confirmada</div>
+      <h1>Análisis PSYOP:<br><em>Second Childhood</em> (Второе детство)</h1>
+      <p class="hero-sub">Deconstrucción técnica integrada del pseudo-documental de RT Documentary (2023) — Protocolo Propaganda Detector 2 / Sistema Argos</p>
+      <div class="hero-meta">
+        <span><strong>Fuente:</strong> rtdoc.tv — RT Documentary (RTД)</span>
+        <span><strong>Año:</strong> 2023</span>
+        <span><strong>Distribución:</strong> Rossotrudnichestvo — Sur Global</span>
+        <span><strong>Protocolo:</strong> Propaganda Detector 2 / Sistema Argos</span>
+        <span><strong>Análisis:</strong> Junio 2026</span>
+      </div>
+    </header>
+
+    <div class="main">
+
+      <!-- S1 RESUMEN -->
+      <h2 class="sec sec-anchor" id="exec">1. Resumen Ejecutivo</h2>
+      <p><em>Second Childhood</em> es una pieza de propaganda estatal rusa de alta sofisticación técnica, diseñada para blanquear el crimen internacional de transferencia forzosa y pasaportización de menores ucranianos bajo el paraguas semántico de la «evacuación humanitaria». Opera como contramedida directa frente a las órdenes de arresto de la CPI del 17 de marzo de 2023 contra Vladímir Putin y la Comisionada María Lvova-Belova —quien aparece en pantalla como portavoz—, intentando reencuadrar un crimen de guerra tipificado como un acto de solidaridad civil espontánea.<sup><a class="citeref" href="#ref-cpi" id="cite-exec-cpi">CPI</a></sup></p>
+
+      <div class="metrics-grid">
+        <div class="metric-cell">
+          <div class="metric-label">Índice de propaganda</div>
+          <div class="metric-value red">10/10</div>
+          <div class="metric-note">Financiado por presupuesto estatal</div>
+        </div>
+        <div class="metric-cell">
+          <div class="metric-label">Sofisticación técnica</div>
+          <div class="metric-value red">Alta</div>
+          <div class="metric-note">7 técnicas distintas identificadas</div>
+        </div>
+        <div class="metric-cell">
+          <div class="metric-label">Narrativas Argos</div>
+          <div class="metric-value blue">N01·N02·N04</div>
+          <div class="metric-note">Víctima / Salvador / Anti-Occidente</div>
+        </div>
+        <div class="metric-cell">
+          <div class="metric-label">Evidencia verificable</div>
+          <div class="metric-value red">Ninguna</div>
+          <div class="metric-note">Todas las fuentes son circulares</div>
+        </div>
+      </div>
+
+      <div class="callout danger">
+        <div class="callout-label">⚠ Hallazgo central</div>
+        <p>El documental no contiene ninguna evidencia verificable de forma independiente. Su valor no es periodístico sino operacional: es una pieza de <em>info-entretenimiento</em> que instrumentaliza el trauma real de menores en zonas de combate para producir transferencia emocional que bloquea el análisis crítico. Toda la arquitectura narrativa converge en un único objetivo: hacer que cuestionar la deportación de niños ucranianos se perciba psicológicamente como un ataque a víctimas inocentes.</p>
+      </div>
+
+      <!-- S2 CONTEXTO -->
+      <h2 class="sec sec-anchor" id="contexto">2. Contexto Estratégico y Función Operacional</h2>
+
+      <h3 class="sub">2.1 Momento de emisión y objetivo inmediato</h3>
+      <p>El documental se produce y distribuye en 2023, semanas después de que la CPI emitiera órdenes de arresto contra Putin y Lvova-Belova (17 de marzo de 2023). No es un producto periodístico independiente: es una respuesta institucional del aparato de propaganda del Kremlin a una crisis legal internacional de primer orden.<sup><a class="citeref" href="#ref-cpi" id="cite-ctx-cpi">CPI</a></sup><sup><a class="citeref" href="#ref-washU" id="cite-ctx-wu">WU</a></sup></p>
+      <p>La participación directa de Lvova-Belova como entrevistada —una de las dos personas investigadas por la CPI— convierte el documental en una <strong>pieza de descargo público con vocería estatal</strong>, no en un reportaje de interés humano.</p>
+
+      <h3 class="sub">2.2 Canal de distribución geopolítica</h3>
+      <p>La distribución exterior fue encomendada a <em>Rossotrudnichestvo</em> (agencia estatal de cooperación cultural rusa), que proyectó el documental en «Casas Rusas» en cuatro países del Sur Global: Egipto, Argentina, Sri Lanka y Camboya. La selección de estos mercados no es casual: son países con posiciones más ambiguas frente al conflicto ucraniano, donde la narrativa de «Rusia como víctima de Occidente» encuentra mayor receptividad.<sup><a class="citeref" href="#ref-ros1" id="cite-ctx-r1">Ros1</a></sup><sup><a class="citeref" href="#ref-ros2" id="cite-ctx-r2">Ros2</a></sup></p>
+
+      <h3 class="sub">2.3 Ausencia de evidencia verificable</h3>
+      <p>Ningún dato, cifra o testimonio del documental puede ser contrastado de forma independiente. Todos los testigos presentados como «civiles espontáneos» operan dentro de la estructura de acogida del Estado ruso. No existe en el documental una sola fuente externa, neutral o crítica.</p>
+
+      <!-- S3 ARQUITECTURA -->
+      <h2 class="sec sec-anchor" id="arquitectura">3. Arquitectura Narrativa: Estructura del Engaño</h2>
+      <p>El documental está construido en cinco capas narrativas concéntricas que se refuerzan mutuamente. La función psicológica clave: el espectador que cuestiona la CAPA 4 (la jurídica) ya ha sido «vacunado» emocionalmente por las CAPAS 1 y 2, de modo que la crítica racional se percibe como crueldad hacia los niños mostrados en pantalla.</p>
+
+      <div class="layers">
+        <div class="layer-row">
+          <div class="layer-num"><span class="ln">1</span><span class="lt">Emocional</span></div>
+          <div class="layer-body"><div class="layer-title">Escenas de vida cotidiana</div><div class="layer-desc">Niños traumatizados que aprenden a bailar, cenas familiares, reparto de ropa. Activa la respuesta empática antes de que el espectador procese el contexto.</div></div>
+        </div>
+        <div class="layer-row">
+          <div class="layer-num"><span class="ln">2</span><span class="lt">Testimonial</span></div>
+          <div class="layer-body"><div class="layer-title">Testimonios de "civiles espontáneos"</div><div class="layer-desc">«Madres adoptivas», directores de internados y filántropos anónimos presentados sin revelar su dependencia estructural del Estado ruso.</div></div>
+        </div>
+        <div class="layer-row">
+          <div class="layer-num"><span class="ln">3</span><span class="lt">Acusatoria</span></div>
+          <div class="layer-body"><div class="layer-title">Imputación de crímenes a Ucrania</div><div class="layer-desc">Escudos humanos, abandono, secuestros de 2014. Coloca al adversario en el rol de agresor para que cualquier extracción rusa se justifique como obligación moral.</div></div>
+        </div>
+        <div class="layer-row">
+          <div class="layer-num"><span class="ln">4</span><span class="lt">Jurídica</span></div>
+          <div class="layer-body"><div class="layer-title">Descalificación de la CPI</div><div class="layer-desc">Equipara la postura rusa con la de EE. UU. y China para reducir una imputación penal a un desacuerdo político entre superpotencias.</div></div>
+        </div>
+        <div class="layer-row">
+          <div class="layer-num"><span class="ln">5</span><span class="lt">Identitaria</span></div>
+          <div class="layer-body"><div class="layer-title">Asimilación como destino natural</div><div class="layer-desc"><em>«Somos una familia… una familia con Rusia.»</em> La deportación sistemática queda reencuadrada como reunificación cultural inevitable.</div></div>
+        </div>
+      </div>
+
+      <!-- S4 TÉCNICAS -->
+      <h2 class="sec sec-anchor" id="tecnica1">4. Matriz de Técnicas de Manipulación</h2>
+
+      <!-- T1 -->
+      <div class="tech-card sec-anchor" id="tecnica1">
+        <div class="tech-header">
+          <div class="tech-num">T1</div>
+          <div class="tech-title">Acusación Espejo <em style="font-size:0.8em;font-weight:400;color:rgba(255,255,255,0.5)">(Mirror Accusation)</em></div>
+          <div class="tech-code">T_03</div>
+        </div>
+        <div class="tech-body">
+          <div class="tech-quote">
+            <div class="ru">«Украинская армия использовала детей в качестве живого щита. Они помещали их в окна, где работали снайперы.»</div>
+            <div class="es">— María Lvova-Belova: «El ejército ucraniano usó a los niños como escudo humano. Los colocaban en las ventanas donde operaban los francotiradores.»</div>
+          </div>
+          <p class="tech-analysis">Atribuye al adversario la atrocidad extrema (uso de menores como escudos) para justificar retroactivamente la extracción forzada. Si Ucrania es un «monstruo que usa niños», cualquier deportación —incluso ilegal— se reencuadra como obligación humanitaria imperativa. Lvova-Belova es precisamente una de las dos personas con orden de arresto de la CPI por el traslado forzoso de estos menores: su aparición como portavoz es un acto de descargo público sin mediación judicial.<sup><a class="citeref" href="#ref-cpi">CPI</a></sup></p>
+        </div>
+      </div>
+
+      <!-- T2 -->
+      <div class="tech-card sec-anchor" id="tecnica2">
+        <div class="tech-header">
+          <div class="tech-num">T2</div>
+          <div class="tech-title">Selección Sesgada de Testimonios <em style="font-size:0.8em;font-weight:400;color:rgba(255,255,255,0.5)">(Cherry-picking)</em></div>
+          <div class="tech-code">T_07</div>
+        </div>
+        <div class="tech-body">
+          <div class="tech-quote">
+            <div class="ru">«Чтобы они не забрали ее силой [...] Последний солдат в подвале [...] сказал, «Ну, что, ждуны? Будем отходить — гранатами вас забросаем».»</div>
+            <div class="es">— Tatiana: «Para que no se la llevaran a la fuerza [...] El último soldado en el sótano dijo: '¿Qué pasa, zhduny? Cuando nos retiremos, os bombardearemos con granadas'.»</div>
+          </div>
+          <p class="tech-analysis">Utiliza el trauma real de civiles en zonas de combate (Bakhmut/Artemovsk) para fabricar una narrativa donde el Estado ucraniano persigue a su propia población. Valida el término despectivo <em>zhduny</em> («los que esperan a los rusos»), convirtiéndolo en una categoría de víctimas legítimas. Omite que los protocolos de evacuación obligatoria de civiles en zonas de combate activo tienen amparo en el derecho internacional humanitario.<sup><a class="citeref" href="#ref-ginebra" id="cite-t2-gin">GC</a></sup></p>
+        </div>
+      </div>
+
+      <!-- T3 -->
+      <div class="tech-card sec-anchor" id="tecnica3">
+        <div class="tech-header">
+          <div class="tech-num">T3</div>
+          <div class="tech-title">Relativismo Jurídico y Deslegitimación Institucional</div>
+          <div class="tech-code">N_04</div>
+        </div>
+        <div class="tech-body">
+          <div class="tech-quote">
+            <div class="ru">«...Международный уголовный суд, юрисдикцию которого не признают Россия, США и Китай, выдал ордер на арест...»</div>
+            <div class="es">— Narrador: «...la Corte Penal Internacional, cuya jurisdicción no reconocen Rusia, EE. UU. ni China, emitió una orden de arresto...»</div>
+          </div>
+          <p class="tech-analysis">Al asociar la postura de Moscú con la de Washington y Pekín, reduce una imputación penal por crímenes de guerra a un mero desacuerdo administrativo entre superpotencias. Omite deliberadamente el Cuarto Convenio de Ginebra (Art. 49-50), que prohíbe el traslado forzoso de civiles —incluidos menores— independientemente de si el Estado ocupante reconoce o no la CPI.<sup><a class="citeref" href="#ref-ginebra" id="cite-t3-gin">GC</a></sup><sup><a class="citeref" href="#ref-washU" id="cite-t3-wu">WU</a></sup></p>
+        </div>
+      </div>
+
+      <!-- T4 -->
+      <div class="tech-card sec-anchor" id="tecnica4">
+        <div class="tech-header">
+          <div class="tech-num">T4</div>
+          <div class="tech-title">Escarnio Cínico y Sarcasmo Estratégico <em style="font-size:0.8em;font-weight:400;color:rgba(255,255,255,0.5)">(Ridicule as Weapon)</em></div>
+          <div class="tech-code">T_03</div>
+        </div>
+        <div class="tech-body">
+          <div class="tech-quote">
+            <div class="ru">«Мне инкриминируют безумное число: 16 000 детей. Кстати, они до сих пор не могут договориться, сколько их...»</div>
+            <div class="es">— Lvova-Belova: «Me imputan un número demencial: 16.000 niños. Por cierto, todavía no se ponen de acuerdo sobre cuántos son...»</div>
+          </div>
+          <p class="tech-analysis">Explota el desfase metodológico natural entre cifras forenses individuales (~6.000 del Yale HRL)<sup><a class="citeref" href="#ref-yale" id="cite-t4-yale">Yale</a></sup> y estimaciones acumuladas (≥20.000 del PE/Bring Kids Back UA)<sup><a class="citeref" href="#ref-pe36" id="cite-t4-pe">PE</a></sup> para presentar la acusación internacional como un caos burocrático. Oculta que es la propia Federación Rusa la que deniega el acceso a sus registros centralizados. La brecha estadística es consecuencia directa de la opacidad rusa, no de incompetencia investigadora.</p>
+        </div>
+      </div>
+
+      <!-- T5 -->
+      <div class="tech-card sec-anchor" id="tecnica5">
+        <div class="tech-header">
+          <div class="tech-num">T5</div>
+          <div class="tech-title">Inversión Semántica de la Coerción</div>
+          <div class="tech-code">N_01</div>
+        </div>
+        <div class="tech-body">
+          <div class="tech-quote">
+            <div class="ru">«[Наталья]: Теперь ты со мной! [Мальчик]: Надолго? [Наталья]: Пока папа не придет за вами. [Мальчик]: Навсегда, навсегда! Навсегда? [Наталья]: Да!»</div>
+            <div class="es">— «¡Ahora estás conmigo!» / «¿Por mucho tiempo?» / «Hasta que papá venga a buscarte.» / «¿Para siempre? ¿Para siempre?» / «¡Sí!»</div>
+          </div>
+          <div class="callout warn" style="margin:0.75rem 0;">
+            <div class="callout-label">⚠ El momento más manipulador del documental</div>
+            <p>Esta secuencia filma la inocencia del menor como evidencia de consentimiento. En el momento exacto en que la cámara capta ese intercambio, los decretos presidenciales rusos de 2022 ya habrían iniciado el proceso de pasaportización. El diálogo es estructuralmente mendaz: presenta como temporal lo que legalmente se está volviendo permanente.<sup><a class="citeref" href="#ref-st5416" id="cite-t5-st">ST</a></sup></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- T6 -->
+      <div class="tech-card sec-anchor" id="tecnica6">
+        <div class="tech-header">
+          <div class="tech-num">T6</div>
+          <div class="tech-title">Inversión de la Prueba y <em style="font-size:0.8em;font-weight:400;color:rgba(255,255,255,0.5)">Whataboutism</em> Histórico</div>
+          <div class="tech-code">T_01</div>
+        </div>
+        <div class="tech-body">
+          <div class="tech-quote">
+            <div class="ru">«Она врет сквозь зубы! [...] В 2014 году [...] Более 200 детей из ЛНР были похищены. Куда они делись? Они отправили в разные детские дома.»</div>
+            <div class="es">— Tatiana Semionova: «¡Miente descaradamente! [...] En 2014 [...] Más de 200 niños de LPR fueron secuestrados. ¿Dónde están? Los enviaron a distintos orfanatos.»</div>
+          </div>
+          <p class="tech-analysis">Ante la investigación del <em>New York Times</em> sobre un caso concreto (la madre Natalia Zhornik buscando a su hijo Artem), el medio ataca la credibilidad de la fuente y lanza una contraacusación no verificada sobre eventos de 2014. En lugar de refutar el hecho concreto denunciado, desplaza el eje moral hacia una transgresión anterior atribuida al adversario, haciendo imposible la discusión sobre el presente.</p>
+        </div>
+      </div>
+
+      <!-- T7 -->
+      <div class="tech-card sec-anchor" id="tecnica7">
+        <div class="tech-header">
+          <div class="tech-num">T7</div>
+          <div class="tech-title">Generalización Sesgada con Casos Aislados <em style="font-size:0.8em;font-weight:400;color:rgba(255,255,255,0.5)">(Anecdotal Fallacy)</em></div>
+          <div class="tech-code">T_03</div>
+        </div>
+        <div class="tech-body">
+          <div class="tech-quote">
+            <div class="ru">«Ни один ребенок не был насильно отобран. Это неправда. [...] Родственники, живущие в Украине, приезжали и забирали детей.»</div>
+            <div class="es">— Lidiia Kovaliova: «Ningún niño fue arrebatado por la fuerza. [...] Los parientes que viven en Ucrania venían y se llevaban a los niños.»</div>
+          </div>
+          <p class="tech-analysis">Utiliza casos documentados de reunificación familiar voluntaria —que efectivamente existen— para negar de forma sistémica la política estatal de deportación masiva. La falacia consiste en usar la excepción para refutar la norma. La Comisión de Investigación Independiente de la ONU ha tipificado el traslado masivo como un patrón sistemático con finalidad política.<sup><a class="citeref" href="#ref-ohchr52" id="cite-t7-ohchr">OHCHR</a></sup><sup><a class="citeref" href="#ref-ohchr61" id="cite-t7-61">OHCHR61</a></sup></p>
+        </div>
+      </div>
+
+      <!-- S5 FUENTES CIRCULARES -->
+      <h2 class="sec sec-anchor" id="fuentes">5. El Problema de las Fuentes Circulares</h2>
+      <p>Uno de los elementos más técnicamente reveladores del documental es la ausencia total de fuentes independientes. Cada personaje presentado como «civil espontáneo» tiene dependencia estructural del aparato estatal ruso:</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Personaje</th><th>Rol declarado</th><th>Dependencia real</th></tr></thead>
+          <tbody>
+            <tr><td><strong>María Lvova-Belova</strong></td><td>«Comisionada de Derechos del Niño»</td><td>Cargo gubernamental — investigada por la CPI</td></tr>
+            <tr><td><strong>Lidiia Kovaliova</strong></td><td>«Madre adoptiva espontánea»</td><td>Directora de hogar estatal financiado con presupuesto ruso</td></tr>
+            <tr><td><strong>Tatiana Semionova</strong></td><td>«Directora de internado»</td><td>Centro bajo administración militar de ocupación</td></tr>
+            <tr><td><strong>Nikolai Verbitski</strong></td><td>«Amigo de la familia»</td><td>Sin verificación independiente de identidad</td></tr>
+            <tr><td><strong>«Dmitri Donskoi»</strong></td><td>«Filántropo anónimo»</td><td>El documental admite que <em>«se negó a identificarse»</em></td></tr>
+            <tr><td><strong>Soldados rusos</strong></td><td>Sin identificación</td><td>Fuente bajo control del Ministerio de Defensa ruso</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout danger">
+        <div class="callout-label">Ninguna fuente neutral</div>
+        <p>Ningún periodista externo, ningún representante de UNICEF, CICR, ACNUR o cualquier organismo neutral aparece en el documental. Todas las «verificaciones» de los hechos son realizadas por actores que forman parte del mismo sistema que está siendo cuestionado.</p>
+      </div>
+
+      <!-- S6 OMISIONES -->
+      <h2 class="sec sec-anchor" id="omisiones">6. Lo que el Documental No Muestra</h2>
+      <p>El análisis de las omisiones es tan importante como el de los contenidos presentes. El documental omite sistemáticamente:</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Elemento omitido</th><th>Por qué es decisivo</th><th>Fuente que lo documenta</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Decretos presidenciales rusos de 2022</strong></td>
+              <td>Son el núcleo del cargo de la CPI: otorgan ciudadanía expedita a menores ucranianos antes de que termine ninguna «emergencia»</td>
+              <td><a href="#ref-st5416">ST-5416-2026-INT</a><sup><a class="citeref" href="#ref-st5416">ST</a></sup></td>
+            </tr>
+            <tr>
+              <td><strong>Art. 49-50, IV Convenio de Ginebra</strong></td>
+              <td>Prohíbe el traslado de civiles fuera del territorio ocupado incluso con «consentimiento», independientemente de si el Estado reconoce la CPI</td>
+              <td><a href="#ref-ginebra">IV Convenio de Ginebra</a><sup><a class="citeref" href="#ref-ginebra">GC</a></sup></td>
+            </tr>
+            <tr>
+              <td><strong>Procesos de filtración</strong></td>
+              <td>Puntos de control donde se separa a menores de sus familias bajo presión coercitiva — invalidando el «consentimiento parental»</td>
+              <td><a href="#ref-europarl16">Estudio PE 2024</a><sup><a class="citeref" href="#ref-europarl16">PE16</a></sup></td>
+            </tr>
+            <tr>
+              <td><strong>Negativa a entregar listados al CICR / UNICEF</strong></td>
+              <td>La brecha de cifras que el documental ridiculiza es consecuencia directa del bloqueo ruso a auditorías neutrales</td>
+              <td><a href="#ref-ohchr52">OHCHR A/HRC/52/62</a><sup><a class="citeref" href="#ref-ohchr52">OHCHR</a></sup></td>
+            </tr>
+            <tr>
+              <td><strong>Cambio de nombre y filiación legal</strong></td>
+              <td>Menores ya pasaportizados con identidad alterada de forma irreversible antes de que ningún padre pueda recuperarlos</td>
+              <td><a href="#ref-ohchr61">OHCHR A/HRC/61/61</a><sup><a class="citeref" href="#ref-ohchr61">OHCHR61</a></sup></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- S7 IMPACTO -->
+      <h2 class="sec sec-anchor" id="impacto">7. Evaluación de Impacto Geopolítico</h2>
+
+      <div class="conclusion-grid">
+        <div class="conclusion-card f1">
+          <h4>Registro 1 — Neutralización legal</h4>
+          <p>Deslegitimar la CPI y sus órdenes de arresto presentándolas como instrumentos políticos occidentales, no como procesos jurídicos basados en evidencia forense.</p>
+        </div>
+        <div class="conclusion-card f2">
+          <h4>Registro 2 — Erosión del consenso</h4>
+          <p>Fracturar el apoyo internacional a Ucrania sembrando dudas sobre si la repatriación exigida supone «devolver a los niños al peligro». Si la narrativa prende, la demanda de repatriación se convierte en crueldad, no en justicia.</p>
+        </div>
+        <div class="conclusion-card f3">
+          <h4>Registro 3 — Legitimación doméstica</h4>
+          <p>Presentar la guerra como una misión de protección de la infancia rusa para el consumo interno, compensando el coste social de las bajas militares con una narrativa de «salvamento civilizatorio».</p>
+        </div>
+        <div class="conclusion-card f4">
+          <h4>El efecto «Reality Limbo»</h4>
+          <p>El modelo <em>Firehose of Falsehood</em>: no necesita convencer al espectador, solo confundirlo. Cuando no sabe qué creer, el resultado político es la pasividad — exactamente lo que Moscú necesita mientras continúa la asimilación.</p>
+        </div>
+      </div>
+
+      <!-- S8 ARGOS -->
+      <h2 class="sec sec-anchor" id="argos">8. Clasificación Argos Consolidada</h2>
+
+      <div class="argos-grid">
+        <div class="argos-row header">
+          <div>Tipo</div><div>Código</div><div>Descripción</div><div>Evidencia</div>
+        </div>
+        <div class="argos-row">
+          <div class="argos-cell type">Narrativa</div>
+          <div class="argos-cell"><span class="code-tag code-n">N_01</span></div>
+          <div class="argos-cell">Víctima defensiva: Rusia actúa obligada a proteger civiles ante agresores externos</div>
+          <div class="argos-cell quote">«...забрала [...] 23 приемных ребенка из Донецка [...] Они говорят, что это спасло им жизнь»</div>
+        </div>
+        <div class="argos-row">
+          <div class="argos-cell type">Narrativa</div>
+          <div class="argos-cell"><span class="code-tag code-n">N_02</span></div>
+          <div class="argos-cell">Salvador Humanitario: el Estado ruso como protector benevolente de la infancia</div>
+          <div class="argos-cell quote">Toda la estructura centrada en «Mama Lida» y sus 23 niños acogidos</div>
+        </div>
+        <div class="argos-row">
+          <div class="argos-cell type">Narrativa</div>
+          <div class="argos-cell"><span class="code-tag code-n">N_04</span></div>
+          <div class="argos-cell">Hipocresía de las instituciones occidentales: deslegitimar tribunales multilaterales</div>
+          <div class="argos-cell quote">«...Международный уголовный суд, юрисдикцию которого не признают Россия, США и Китай...»</div>
+        </div>
+        <div class="argos-row">
+          <div class="argos-cell type">Técnica</div>
+          <div class="argos-cell"><span class="code-tag code-t">T_01</span></div>
+          <div class="argos-cell"><em>Whataboutism</em> / Proyección histórica de culpa</div>
+          <div class="argos-cell quote">«В 2014 году [...] Более 200 детей из ЛНР были похищены»</div>
+        </div>
+        <div class="argos-row">
+          <div class="argos-cell type">Técnica</div>
+          <div class="argos-cell"><span class="code-tag code-t">T_03</span></div>
+          <div class="argos-cell"><em>Firehose of Falsehood</em>: saturación de versiones contradictorias</div>
+          <div class="argos-cell quote">Alternancia caótica: «evacuación voluntaria» / «escudos humanos» / «fácil reunificación»</div>
+        </div>
+        <div class="argos-row">
+          <div class="argos-cell type">Técnica</div>
+          <div class="argos-cell"><span class="code-tag code-t">T_05</span></div>
+          <div class="argos-cell">Inversión semántica de la coerción: asimilación presentada como elección afectiva</div>
+          <div class="argos-cell quote">«¿Para siempre?» / «¡Sí!» — diálogo Natalia / Vania</div>
+        </div>
+        <div class="argos-row">
+          <div class="argos-cell type">Técnica</div>
+          <div class="argos-cell"><span class="code-tag code-t">T_07</span></div>
+          <div class="argos-cell">Fuentes circulares dependientes del aparato estatal</div>
+          <div class="argos-cell quote">«У нас есть свидетельства детей и родственников, которые были с ними в это время»</div>
+        </div>
+      </div>
+
+      <!-- S9 VALIDACION -->
+      <h2 class="sec sec-anchor" id="validacion">9. Preguntas de Validación Crítica</h2>
+      <p>Las siguientes preguntas permiten desactivar el efecto de transferencia emocional del documental y reanclarlo en el marco jurídico-factual:</p>
+
+      <ul class="q-list">
+        <li class="q-item">
+          <div class="q-num">1</div>
+          <div>
+            <div class="q-title">Marco legal omitido</div>
+            <div class="q-body">Si el traslado es una «evacuación de emergencia humanitaria temporal», ¿cuál es el sustento bajo el derecho internacional (Art. 49-50 del IV Convenio de Ginebra<sup><a class="citeref" href="#ref-ginebra">GC</a></sup>) para promulgar decretos presidenciales que otorgan ciudadanía expedita y facilitan la adopción legal de estos menores, alterando permanentemente su identidad antes de que termine ninguna «emergencia»?</div>
+          </div>
+        </li>
+        <li class="q-item">
+          <div class="q-num">2</div>
+          <div>
+            <div class="q-title">Transparencia operativa</div>
+            <div class="q-body">Si la devolución de menores es «sencilla» —como afirma Tatiana Semionova en el documental («У нас нет проблем с возвращением детей»)—, ¿por qué las autoridades de la Federación Rusa se niegan sistemáticamente a entregar listados nominales completos y auditados al CICR o a UNICEF para permitir la localización por sus tutores legales?<sup><a class="citeref" href="#ref-unicef">UNICEF</a></sup></div>
+          </div>
+        </li>
+        <li class="q-item">
+          <div class="q-num">3</div>
+          <div>
+            <div class="q-title">Coherencia de cifras</div>
+            <div class="q-body">Si la incapacidad de los investigadores para consensuar una cifra única prueba que la acusación es un «número demencial», ¿cómo explica que sea la propia Federación Rusa la que bloquea el acceso a los registros que permitirían establecer la cifra exacta? La brecha entre los ~6.000 de Yale<sup><a class="citeref" href="#ref-yale">Yale</a></sup> y los ≥20.000 del PE<sup><a class="citeref" href="#ref-pe36">PE</a></sup> no es evidencia de incompetencia investigadora, sino consecuencia directa de la opacidad del Estado investigado.</div>
+          </div>
+        </li>
+        <li class="q-item">
+          <div class="q-num">4</div>
+          <div>
+            <div class="q-title">Consentimiento infantil</div>
+            <div class="q-body">¿En qué marco ético o jurídico el consentimiento expresado por un niño de 7-9 años en situación de desplazamiento forzado, separado de su familia biológica y grabado por una cámara de un medio estatal ruso, puede considerarse evidencia válida de elección libre y voluntaria?</div>
+          </div>
+        </li>
+      </ul>
+
+      <!-- S10 CONTRASTE -->
+      <h2 class="sec sec-anchor" id="contraste">10. Fuentes de Contraste</h2>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Afirmación del documental</th><th>Fuente de contraste</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>«Nadie fue arrebatado por la fuerza»</td>
+              <td><a href="https://www.ohchr.org/sites/default/files/documents/hrbodies/hrcouncil/coiukraine/A_HRC_52_62_AUV_EN.pdf" target="_blank" rel="noopener">OHCHR A/HRC/52/62</a> · <a href="https://www.ohchr.org/sites/default/files/documents/hrbodies/hrcouncil/sessions-regular/session61/advance-version/a-hrc-61-61-auv.pdf" target="_blank" rel="noopener">A/HRC/61/61</a></td>
+            </tr>
+            <tr>
+              <td>«La CPI usa cifras inventadas»</td>
+              <td><a href="https://www.europarl.europa.eu/doceo/document/TA-10-2025-07-09_EN.html" target="_blank" rel="noopener">Yale HRL — Metodología de verificación individual</a> · <a href="https://www.europarl.europa.eu/doceo/document/TA-10-2025-0096_EN.html" target="_blank" rel="noopener">Bring Kids Back UA</a></td>
+            </tr>
+            <tr>
+              <td>«La devolución es sencilla»</td>
+              <td><a href="https://www.eeas.europa.eu/delegations/philippines/high-level-meeting-international-coalition-return-ukrainian-children_en?s=176" target="_blank" rel="noopener">Coalición Internacional para la Repatriación (EEAS, sept. 2025)</a></td>
+            </tr>
+            <tr>
+              <td>«Ucrania no evacuó niños»</td>
+              <td><a href="https://www.unicef.org/media/177141/file/2026-HAC-Ukraine-and-Refugee-Response.pdf" target="_blank" rel="noopener">UNICEF: Ukraine and Refugee Response 2026</a></td>
+            </tr>
+            <tr>
+              <td>Decretos de ciudadanía expedita (omitidos)</td>
+              <td><a href="https://data.consilium.europa.eu/doc/document/ST-5416-2026-INT/en/pdf" target="_blank" rel="noopener">ST-5416-2026-INT — EU Sanctions and Legal Framework (Consilium, 2026)</a></td>
+            </tr>
+            <tr>
+              <td>Lvova-Belova como portavoz neutral</td>
+              <td><a href="https://openscholarship.wustl.edu/law_scholarship/897/" target="_blank" rel="noopener">Conferred Jurisdiction and the ICC's Putin and Lvova-Belova Warrants (WashU Law)</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- S11 CONCLUSIÓN -->
+      <h2 class="sec sec-anchor" id="conclusion">11. Conclusión: El Documental como Artefacto de Inteligencia</h2>
+
+      <p><em>Second Childhood</em> no es un documental. Es un artefacto de operación psicológica (PSYOP) de alta calidad técnica, construido con cuatro funciones operacionales precisas:</p>
+
+      <div class="conclusion-grid" style="margin-bottom:1.5rem;">
+        <div class="conclusion-card f1"><h4>Función legal</h4><p>Proporcionar a Lvova-Belova un espacio público de descargo ante la CPI sin someterse a ningún proceso judicial.</p></div>
+        <div class="conclusion-card f2"><h4>Función diplomática</h4><p>Erosionar el consenso internacional que sustenta las sanciones y la Coalición de Repatriación.</p></div>
+        <div class="conclusion-card f3"><h4>Función cognitiva</h4><p>Inducir un «reality limbo» en audiencias occidentales que deprima el apoyo moral y financiero a la repatriación.</p></div>
+        <div class="conclusion-card f4"><h4>Función identitaria</h4><p>Normalizar ante la audiencia doméstica rusa la asimilación de menores ucranianos como «unificación familiar» con Rusia.</p></div>
+      </div>
+
+      <div class="callout dark">
+        <div class="callout-label">Clave semántica de toda la operación</div>
+        <p>«Мы теперь одна семья... одна семья с Россией! Я верю, что... именно так мы должны объединиться, как одна семья.»<br><br>«Somos ahora una familia... ¡una familia con Rusia! Creo que... así es como debemos unirnos, como una sola familia.» — Lidiia Kovaliova, frase de cierre del documental</p>
+      </div>
+      <p style="margin-top:1rem;">No es el cierre emocional de una historia de acogida: es la declaración explícita del objetivo político de la deportación sistemática que el documental ha pasado 50 minutos intentando hacer invisible.</p>
+
+      <!-- TRANSCRIPCIÓN -->
+      <h2 class="sec sec-anchor" id="transcripcion">Transcripción Original</h2>
+      <p>Acceso a la transcripción íntegra del documental extraída del archivo WebVTT de <code>rtdoc.tv</code>. Contiene todos los diálogos en ruso con identificación de hablantes.</p>
+
+      <a class="transcript-banner" href="https://rtdoc.tv/films/653-donbass-restoring-childhood" target="_blank" rel="noopener">
+        <div>
+          <div class="tb-label">Fuente primaria — RT Documentary</div>
+          <div class="tb-title">Second Childhood / Второе детство (2023)</div>
+          <div class="tb-sub">rtdoc.tv/films/653-donbass-restoring-childhood · Transcripción completa en ruso</div>
+        </div>
+        <div class="tb-icon">→</div>
+      </a>
+
+      <!-- NAVEGACIÓN -->
+      <div class="nav-banners">
+        <a class="nav-banner b1" href="index.html">
+          <div class="nb-label">← Volver a</div>
+          <div class="nb-title">Resumen ejecutivo del informe integrado</div>
+        </a>
+        <a class="nav-banner b2" href="informe_completo.html">
+          <div class="nb-label">Ver también</div>
+          <div class="nb-title">Informe completo — todas las secciones y 44 referencias</div>
+        </a>
+      </div>
+
+      <!-- REFERENCIAS -->
+      <h2 class="sec sec-anchor" id="refs">Referencias</h2>
+      <p style="font-size:12px;color:var(--ink-faint);margin-bottom:1rem;">Los superíndices en el texto enlazan a esta sección. La flecha ↩ devuelve al primer punto de citación.</p>
+
+      <div class="ref-section">
+
+        <div class="ref-item">
+          <div class="ref-tag" id="ref-cpi">CPI</div>
+          <div class="ref-body">Órdenes de arresto CPI contra Putin y Lvova-Belova (17 mar. 2023) — <em>Conferred Jurisdiction and the ICC's Putin and Lvova-Belova Warrants</em> · <a href="https://openscholarship.wustl.edu/law_scholarship/897/" target="_blank" rel="noopener">WashU Law</a><a class="backref" href="#cite-exec-cpi">↩</a></div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-tag" id="ref-washU">WU</div>
+          <div class="ref-body">Conferred Jurisdiction and the ICC's Putin and Lvova-Belova Warrants — Washington University School of Law · <a href="https://openscholarship.wustl.edu/law_scholarship/897/" target="_blank" rel="noopener">openscholarship.wustl.edu</a><a class="backref" href="#cite-ctx-wu">↩</a></div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-tag" id="ref-ros1">Ros1</div>
+          <div class="ref-body">Rossotrudnichestvo: RT Documentary films about children of Donbass in Russian Houses · <a href="https://rs.gov.ru/en/news/rt-documentary-films-about-real-stories-of-donbass-children-watched-in-russian-houses/" target="_blank" rel="noopener">rs.gov.ru</a><a class="backref" href="#cite-ctx-r1">↩</a></div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-tag" id="ref-ros2">Ros2</div>
+          <div class="ref-body">Rossotrudnichestvo: RT Documentary — anuncio de proyecciones en Casas Rusas · <a href="https://rs.gov.ru/en/news/rt-documentary-films-about-children-of-donbass-will-be-shown-in-russian-houses/" target="_blank" rel="noopener">rs.gov.ru</a><a class="backref" href="#cite-ctx-r2">↩</a></div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-tag" id="ref-ohchr52">OHCHR</div>
+          <div class="ref-body">A/HRC/52/62 — Commission of Inquiry on Ukraine (OHCHR) — Tipificación del traslado forzoso como crimen de guerra · <a href="https://www.ohchr.org/sites/default/files/documents/hrbodies/hrcouncil/coiukraine/A_HRC_52_62_AUV_EN.pdf" target="_blank" rel="noopener">ohchr.org</a><a class="backref" href="#cite-t7-ohchr">↩</a></div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-tag" id="ref-ohchr61">OHCHR61</div>
+          <div class="ref-body">A/HRC/61/61 — OHCHR Commission of Inquiry, sesión 61 · <a href="https://www.ohchr.org/sites/default/files/documents/hrbodies/hrcouncil/sessions-regular/session61/advance-version/a-hrc-61-61-auv.pdf" target="_blank" rel="noopener">ohchr.org</a><a class="backref" href="#cite-t7-61">↩</a></div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-tag" id="ref-ginebra">GC</div>
+          <div class="ref-body">IV Convenio de Ginebra (1949), Art. 49-50 — Prohibición de traslado forzoso de civiles en territorio ocupado · <a href="https://www.icrc.org/en/doc/resources/documents/publication/p0173.htm" target="_blank" rel="noopener">icrc.org</a><a class="backref" href="#cite-t2-gin">↩</a></div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-tag" id="ref-europarl16">PE16</div>
+          <div class="ref-body">Forcible transfer and deportation of Ukrainian children — Estudio del Parlamento Europeo (2024) · <a href="https://www.europarl.europa.eu/RegData/etudes/STUD/2024/754442/EXPO_STU(2024)754442_EN.pdf" target="_blank" rel="noopener">europarl.europa.eu</a><a class="backref" href="#cite-t2-gin">↩</a></div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-tag" id="ref-yale">Yale</div>
+          <div class="ref-body">Yale Humanitarian Research Lab — ~6.000 casos identificados individualmente · <a href="https://www.europarl.europa.eu/doceo/document/TA-10-2025-07-09_EN.html" target="_blank" rel="noopener">Referenciado en PE — Julio 2025</a><a class="backref" href="#cite-t4-yale">↩</a></div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-tag" id="ref-pe36">PE</div>
+          <div class="ref-body">Textos adoptados — Retorno de niños ucranianos transferidos por la fuerza — Parlamento Europeo (2025) · <a href="https://www.europarl.europa.eu/doceo/document/TA-10-2025-0096_EN.html" target="_blank" rel="noopener">europarl.europa.eu</a><a class="backref" href="#cite-t4-pe">↩</a></div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-tag" id="ref-st5416">ST</div>
+          <div class="ref-body">ST-5416-2026-INT — EU Sanctions and Legal Framework — Decretos presidenciales rusos (Consilium, 2026) · <a href="https://data.consilium.europa.eu/doc/document/ST-5416-2026-INT/en/pdf" target="_blank" rel="noopener">consilium.europa.eu</a><a class="backref" href="#cite-t5-st">↩</a></div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-tag" id="ref-unicef">UNICEF</div>
+          <div class="ref-body">Ukraine and Refugee Response 2026 — UNICEF · <a href="https://www.unicef.org/media/177141/file/2026-HAC-Ukraine-and-Refugee-Response.pdf" target="_blank" rel="noopener">unicef.org</a><a class="backref" href="#cite-t2-gin">↩</a></div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-tag" id="ref-rtdoc">RT</div>
+          <div class="ref-body">RT Documentary: <em>Second Childhood / Второе детство</em> (2023) — Fuente primaria analizada · <a href="https://rtdoc.tv/films/653-donbass-restoring-childhood" target="_blank" rel="noopener">rtdoc.tv</a></div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-tag" id="ref-ohchr-crp4">CRP4</div>
+          <div class="ref-body">A/HRC/52/CRP.4 — OHCHR (2023) — Documentación de prácticas de filtración · <a href="https://www.ohchr.org/sites/default/files/2023-08/A_HRC_52_CRP.4_En%20%28003%29.pdf" target="_blank" rel="noopener">ohchr.org</a></div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-tag" id="ref-cambridge">CAM</div>
+          <div class="ref-body">Capturing the minds — The role of child deportation in maintaining Russian authority (Cambridge / EJIS) · <a href="https://www.cambridge.org/core/journals/european-journal-of-international-security/article/capturing-the-minds-the-role-of-child-deportation-in-maintaining-russian-authority-over-ukraines-occupied-territories/752354B4F5AB0983F4CE5A489FA10391" target="_blank" rel="noopener">cambridge.org</a></div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-tag" id="ref-consilium">EU</div>
+          <div class="ref-body">EU Sanctions — 16 individuos y 7 entidades (Consilium, 11 may. 2026) · <a href="https://www.consilium.europa.eu/en/press/press-releases/2026/05/11/ukrainian-children-unlawfully-deported-and-forcibly-transferred-to-russia-eu-sanctions-16-individuals-and-seven-entities/" target="_blank" rel="noopener">consilium.europa.eu</a></div>
+        </div>
+
+      </div>
+
+    </div><!-- /main -->
+
+    <footer>
+      <p>Análisis de Operación de Información — Sistema Argos / Propaganda Detector 2 — Junio 2026 — Unclassified / FOUO</p>
+      <p style="margin-top:3px;">
+        <a href="index.html" style="color:var(--blue-mid);text-decoration:none;">← Resumen ejecutivo</a> &nbsp;·&nbsp;
+        <a href="informe_completo.html" style="color:var(--blue-mid);text-decoration:none;">Informe completo</a> &nbsp;·&nbsp;
+        <a href="https://rtdoc.tv/films/653-donbass-restoring-childhood" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">Fuente primaria: RT Documentary →</a>
+      </p>
+    </footer>
+  </div>
+</div>
+
+<script>
+const links = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('.sec-anchor');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+    }
+  });
+}, { rootMargin: '-50px 0px -65% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

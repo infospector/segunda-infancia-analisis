@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Niños Ucranianos — Informe de Inteligencia 2022–2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d1117;
+    --ink-muted: #4a5568;
+    --ink-faint: #8896a8;
+    --surface: #f8f7f4;
+    --card: #ffffff;
+    --rule: #dde1e8;
+    --accent: #c0392b;
+    --accent-soft: #fdf0ef;
+    --blue: #1a3a5c;
+    --blue-mid: #2e6da4;
+    --blue-soft: #edf4fb;
+    --green: #1a5c2a;
+    --green-soft: #edf7f0;
+    --amber: #7a4a00;
+    --amber-soft: #fef8ed;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── TOP BAND ─────────────────────────────────────────── */
+  .classification-bar {
+    background: var(--blue);
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* ── HERO ─────────────────────────────────────────────── */
+  .hero {
+    background: var(--card);
+    border-bottom: 1px solid var(--rule);
+    padding: 4rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--blue-mid) 60%, var(--blue) 100%);
+  }
+  .hero-inner { max-width: 820px; margin: 0 auto; }
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--blue-mid);
+  }
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--ink-muted);
+    max-width: 580px;
+    margin-bottom: 2rem;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--ink-faint);
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+  }
+  .hero-meta span strong { color: var(--ink-muted); font-weight: 500; }
+
+  /* ── LAYOUT ───────────────────────────────────────────── */
+  .main { max-width: 820px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+
+  /* ── KPI STRIP ────────────────────────────────────────── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+  .kpi-cell {
+    background: var(--card);
+    padding: 1.25rem 1.25rem 1rem;
+  }
+  .kpi-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+  }
+  .kpi-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--blue);
+    margin-bottom: 0.2rem;
+  }
+  .kpi-note { font-size: 11.5px; color: var(--ink-faint); }
+
+  /* ── SECTION HEADINGS ─────────────────────────────────── */
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-faint);
+    margin-bottom: 0.6rem;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.55rem;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  h3 {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-muted);
+    margin-bottom: 0.75rem;
+  }
+  p { color: var(--ink-muted); margin-bottom: 0.9rem; }
+  p:last-child { margin-bottom: 0; }
+
+  section { margin-bottom: 3.5rem; }
+
+  /* ── CALLOUT ──────────────────────────────────────────── */
+  .callout {
+    border-left: 3px solid var(--blue-mid);
+    background: var(--blue-soft);
+    padding: 1rem 1.25rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1.5rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .callout-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--blue-mid);
+    margin-bottom: 0.3rem;
+  }
+  .callout.danger .callout-label { color: var(--accent); }
+  .callout p { color: var(--ink); font-size: 0.93rem; margin: 0; }
+
+  /* ── PART CARDS ───────────────────────────────────────── */
+  .parts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  @media (max-width: 560px) { .parts-grid { grid-template-columns: 1fr; } }
+  .part-card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .part-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+  .part-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .part-card.part1::before { background: var(--blue-mid); }
+  .part-card.part2::before { background: var(--accent); }
+  .part-card-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    line-height: 1;
+    color: var(--rule);
+    position: absolute;
+    top: 1rem; right: 1.25rem;
+    user-select: none;
+  }
+  .part-card-tag {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+  }
+  .part-card.part1 .part-card-tag { background: var(--blue-soft); color: var(--blue-mid); }
+  .part-card.part2 .part-card-tag { background: var(--accent-soft); color: var(--accent); }
+  .part-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--ink);
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+  }
+  .part-card p { font-size: 0.88rem; color: var(--ink-muted); margin-bottom: 0.75rem; }
+  .part-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .part-card ul li {
+    font-size: 0.83rem;
+    color: var(--ink-muted);
+    padding: 3px 0 3px 1rem;
+    position: relative;
+  }
+  .part-card ul li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--ink-faint);
+  }
+
+  /* ── FINDINGS CARDS ───────────────────────────────────── */
+  .findings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 560px) { .findings-grid { grid-template-columns: 1fr; } }
+  .finding-card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+  .finding-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.75rem;
+    font-size: 15px;
+  }
+  .finding-icon.blue { background: var(--blue-soft); color: var(--blue-mid); }
+  .finding-icon.red { background: var(--accent-soft); color: var(--accent); }
+  .finding-icon.green { background: var(--green-soft); color: var(--green); }
+  .finding-icon.amber { background: var(--amber-soft); color: var(--amber); }
+  .finding-card h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .finding-card p { font-size: 0.83rem; color: var(--ink-muted); }
+
+  /* ── PROPAGANDA SOCE TABLE ────────────────────────────── */
+  .soce-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .soce-row {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    border-bottom: 1px solid var(--rule);
+    background: var(--card);
+    transition: background 0.15s;
+  }
+  .soce-row:last-child { border-bottom: none; }
+  .soce-row:hover { background: var(--blue-soft); }
+  .soce-letter {
+    background: var(--blue);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+  }
+  .soce-content { padding: 0.85rem 1rem; }
+  .soce-name { font-size: 0.83rem; font-weight: 600; color: var(--ink); margin-bottom: 0.2rem; }
+  .soce-desc { font-size: 0.8rem; color: var(--ink-muted); }
+
+  /* ── TIMELINE ─────────────────────────────────────────── */
+  .timeline { position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 6px; bottom: 6px;
+    width: 1px;
+    background: var(--rule);
+  }
+  .timeline-item { position: relative; margin-bottom: 1.5rem; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot {
+    position: absolute;
+    left: -1.5rem;
+    top: 4px;
+    width: 13px; height: 13px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 2px solid var(--rule);
+  }
+  .timeline-item.active .timeline-dot {
+    border-color: var(--blue-mid);
+    background: var(--blue-mid);
+  }
+  .timeline-year {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    margin-bottom: 0.2rem;
+  }
+  .timeline-text { font-size: 0.85rem; color: var(--ink-muted); }
+
+  /* ── SYNTHESIS SPLIT ──────────────────────────────────── */
+  .synthesis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 560px) { .synthesis-grid { grid-template-columns: 1fr; } }
+  .synthesis-col {
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+  .synthesis-col.wins { background: var(--green-soft); border: 1px solid #c6e8cf; }
+  .synthesis-col.blocks { background: var(--accent-soft); border: 1px solid #f5c6c4; }
+  .synthesis-col h4 {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  .synthesis-col.wins h4 { color: var(--green); }
+  .synthesis-col.blocks h4 { color: var(--accent); }
+  .synthesis-col ul { list-style: none; padding: 0; }
+  .synthesis-col ul li {
+    font-size: 0.83rem;
+    padding: 4px 0 4px 1.2rem;
+    position: relative;
+    color: var(--ink);
+  }
+  .synthesis-col.wins ul li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size: 11px; top: 5px; }
+  .synthesis-col.blocks ul li::before { content: '✗'; position: absolute; left: 0; color: var(--accent); font-weight: 700; font-size: 11px; top: 5px; }
+
+  /* ── RECS ─────────────────────────────────────────────── */
+  .rec-list { list-style: none; padding: 0; }
+  .rec-item {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 0.75rem;
+    align-items: start;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .rec-item:last-child { border-bottom: none; }
+  .rec-num {
+    width: 28px; height: 28px;
+    background: var(--blue);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .rec-title { font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-bottom: 0.2rem; }
+  .rec-body { font-size: 0.83rem; color: var(--ink-muted); }
+
+  /* ── DETAIL LINK ──────────────────────────────────────── */
+  .detail-link-banner {
+    background: var(--blue);
+    color: #fff;
+    border-radius: 10px;
+    padding: 1.75rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .detail-link-banner:hover { background: var(--blue-mid); }
+  .detail-link-banner .dlb-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 0.25rem;
+  }
+  .detail-link-banner .dlb-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    color: #fff;
+  }
+  .detail-link-banner .dlb-arrow {
+    font-size: 1.5rem;
+    color: rgba(255,255,255,0.5);
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ───────────────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--rule);
+    background: var(--card);
+    padding: 2rem;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  /* ── ANIMATIONS ───────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-inner, .kpi-grid, section {
+    animation: fadeUp 0.5s ease both;
+  }
+  .kpi-grid { animation-delay: 0.08s; }
+  section:nth-of-type(1) { animation-delay: 0.12s; }
+  section:nth-of-type(2) { animation-delay: 0.16s; }
+  section:nth-of-type(3) { animation-delay: 0.20s; }
+  section:nth-of-type(4) { animation-delay: 0.24s; }
+  section:nth-of-type(5) { animation-delay: 0.28s; }
+  section:nth-of-type(6) { animation-delay: 0.32s; }
+  section:nth-of-type(7) { animation-delay: 0.36s; }
+</style>
+</head>
+<body>
+
+<div class="classification-bar">
+  <span>Unclassified / FOUO &nbsp;·&nbsp; Fuentes: OSINT &nbsp;·&nbsp; UE / OTAN</span>
+  <span>Junio 2026</span>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Informe de Inteligencia Integrado</div>
+    <h1>Deportación y Reeducación de<br><em>Niños Ucranianos</em></h1>
+    <p class="hero-subtitle">Análisis integral: escala del crimen, mecanismos, estrategia propagandística rusa y estancamiento diplomático (2022–2026).</p>
+    <div class="hero-meta">
+      <span><strong>Ámbito:</strong> UE / OTAN</span>
+      <span><strong>Período:</strong> 2022 – 2026</span>
+      <span><strong>Fuentes:</strong> OHCHR · Yale HRL · Parlamento Europeo · CPI</span>
+      <span><strong>Actualizado:</strong> Junio 2026</span>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi-cell">
+      <div class="kpi-label">Casos verificados</div>
+      <div class="kpi-value">~6.000</div>
+      <div class="kpi-note">Yale Humanitarian Research Lab</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">Estimación documentada</div>
+      <div class="kpi-value">≥20.000</div>
+      <div class="kpi-note">Parlamento Europeo · Bring Kids Back UA</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">Órdenes de arresto CPI</div>
+      <div class="kpi-value">2</div>
+      <div class="kpi-note">Putin + Lvova-Belova · 17 mar. 2023</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">Sanciones UE (may. 2026)</div>
+      <div class="kpi-value">16 + 7</div>
+      <div class="kpi-note">Individuos + Entidades · 11 may. 2026</div>
+    </div>
+  </div>
+
+  <!-- ESTRUCTURA DEL INFORME -->
+  <section>
+    <div class="section-label">Estructura del informe</div>
+    <h2>Dos partes complementarias</h2>
+    <div class="parts-grid">
+      <div class="part-card part1">
+        <div class="part-card-number">I</div>
+        <div class="part-card-tag">La Realidad del Crimen</div>
+        <h3>Escala, mecanismos e impacto humanitario</h3>
+        <p>Documentación de los hechos: magnitud, vías de deportación, reeducación y cronología diplomática.</p>
+        <ul>
+          <li>Cifras y fuentes de verificación</li>
+          <li>Marco legal internacional (CPI, Estatuto de Roma, CRC)</li>
+          <li>Filtración, adopciones forzadas y reeducación</li>
+          <li>Impacto en las víctimas y desafíos de reintegración</li>
+          <li>Cronología 2022–2026</li>
+        </ul>
+      </div>
+      <div class="part-card part2">
+        <div class="part-card-number">II</div>
+        <div class="part-card-tag">La Estrategia del Agresor</div>
+        <h3>Narrativa, propaganda y escalada</h3>
+        <p>Cómo Moscú justifica, encubre y convierte la rendición de cuentas en amenaza.</p>
+        <ul>
+          <li>Redefinición semántica y mito del consentimiento</li>
+          <li>Andamiaje burocrático-legal</li>
+          <li>Marco SOCE: análisis de propaganda</li>
+          <li>Respuesta ante la CPI y amenazas nucleares</li>
+          <li>Tácticas de bloqueo diplomático</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- HALLAZGOS CLAVE -->
+  <section>
+    <div class="section-label">Parte I — La Realidad</div>
+    <h2>Hallazgos clave</h2>
+    <div class="findings-grid">
+      <div class="finding-card">
+        <div class="finding-icon blue">⚖</div>
+        <h4>Crímenes tipificados internacionalmente</h4>
+        <p>La OACDH confirma: deportación forzosa constituye crimen de guerra y crimen contra la humanidad según el Estatuto de Roma (Art. 7 y 8).</p>
+      </div>
+      <div class="finding-card">
+        <div class="finding-icon red">⚠</div>
+        <h4>Potencial genocidio cultural</h4>
+        <p>Yale y el Gobierno canadiense sostienen que la transferencia forzosa busca impedir la reproducción del grupo nacional ucraniano (Art. II, Estatuto de Roma).</p>
+      </div>
+      <div class="finding-card">
+        <div class="finding-icon amber">🏗</div>
+        <h4>Mecanismo sistemático en tres fases</h4>
+        <p>Filtración coercitiva → transferencia formal → adopciones forzadas con cambio de nombre, nacionalidad e historia familiar.</p>
+      </div>
+      <div class="finding-card">
+        <div class="finding-icon green">🔄</div>
+        <h4>Reeducación para crear lealtad a Moscú</h4>
+        <p>Currículos reformados, burbuja informativa y socialización militar para crear una generación leal. El objetivo incluye compensar bajas futuras.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARCO SOCE -->
+  <section>
+    <div class="section-label">Parte II — La Estrategia</div>
+    <h2>Marco SOCE: cuatro técnicas de propaganda</h2>
+    <p>Análisis de <em>Second Childhood</em> (RT Documentary, 2023) — promovido en el Sur Global para contrarrestar las órdenes de la CPI. Ninguna evidencia verificable. Valor operacional, no periodístico.</p>
+
+    <div class="soce-grid">
+      <div class="soce-row">
+        <div class="soce-letter">S</div>
+        <div class="soce-content">
+          <div class="soce-name">Salvador Humanitario</div>
+          <div class="soce-desc">Transfiere la respuesta emocional positiva a una madre adoptiva hacia el Estado ruso como protector benevolente.</div>
+        </div>
+      </div>
+      <div class="soce-row">
+        <div class="soce-letter">O</div>
+        <div class="soce-content">
+          <div class="soce-name">Propaganda por Omisión</div>
+          <div class="soce-desc">Muestra la devastación en Donetsk omitiendo completamente el papel de Rusia como agresor.</div>
+        </div>
+      </div>
+      <div class="soce-row">
+        <div class="soce-letter">C</div>
+        <div class="soce-content">
+          <div class="soce-name">Contra-narrativa Preventiva</div>
+          <div class="soce-desc">Critica explícitamente a las «instituciones occidentales» como contrapeso de relaciones públicas a las órdenes de arresto de la CPI.</div>
+        </div>
+      </div>
+      <div class="soce-row">
+        <div class="soce-letter">E</div>
+        <div class="soce-content">
+          <div class="soce-name">Giro Emocional</div>
+          <div class="soce-desc">Música cinematográfica y primeros planos del trauma infantil. Cuestionar la producción se percibe como un ataque a niños inocentes.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALERTA ESCALADA -->
+  <section>
+    <div class="callout danger">
+      <div class="callout-label">⚠ Indicador de escalada — alerta activa</div>
+      <p>Las declaraciones de Medvedev (ataques hipersónicos al Bundestag / CPI) y Simonyan (capital destruida en minutos) deben tratarse como indicadores de disposición a la escalada retórica extrema y como parte del sistema ruso de señalización estratégica coercitiva. Este patrón normaliza la coerción nuclear como instrumento de mensaje político.</p>
+    </div>
+  </section>
+
+  <!-- CRONOLOGÍA -->
+  <section>
+    <div class="section-label">Cronología</div>
+    <h2>Evolución 2022–2026</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2022–2023</div>
+        <div class="timeline-text">Documentación inicial. Primeros retornos vinculados a intercambios de prisioneros (no a mecanismos de repatriación). CPI emite órdenes de arresto (17 mar. 2023) contra Putin y Lvova-Belova.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2024–2025</div>
+        <div class="timeline-text">Consolidación de la Coalición Internacional para la Repatriación. Resoluciones del Parlamento Europeo reconociendo la cifra de ≥20.000 niños afectados.</div>
+      </div>
+      <div class="timeline-item active">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2026 — Situación actual</div>
+        <div class="timeline-text">Comisión de Investigación de la OACDH confirma que los traslados criminales continúan. UE impone sanciones el 11 de mayo (16 individuos / 7 entidades). Repatriación efectiva mínima.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SÍNTESIS -->
+  <section>
+    <div class="section-label">Síntesis analítica</div>
+    <h2>Dualidad: triunfo jurídico vs. estancamiento práctico</h2>
+    <div class="synthesis-grid">
+      <div class="synthesis-col wins">
+        <h4>Triunfos jurídicos y morales</h4>
+        <ul>
+          <li>Tipificación y condena internacional unánime</li>
+          <li>Órdenes de arresto CPI (Putin / Lvova-Belova)</li>
+          <li>Sanciones UE mayo 2026</li>
+          <li>Infraestructura de datos (Bring Kids Back UA)</li>
+          <li>Consenso académico sobre carácter sistemático</li>
+        </ul>
+      </div>
+      <div class="synthesis-col blocks">
+        <h4>Estancamiento práctico</h4>
+        <ul>
+          <li>Repatriación efectiva mínima a junio 2026</li>
+          <li>Negativa inamovible de Moscú a cooperar</li>
+          <li>Brecha crítica: paradero de ~6.000 niños</li>
+          <li>Propaganda activa en el Sur Global</li>
+          <li>Retórica de escalada nuclear como disuasión</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOMENDACIONES -->
+  <section>
+    <div class="section-label">Recomendaciones operacionales</div>
+    <h2>Para la UE y la OTAN</h2>
+    <ul class="rec-list">
+      <li class="rec-item">
+        <div class="rec-num">1</div>
+        <div>
+          <div class="rec-title">Vigilancia y señalización estratégica</div>
+          <div class="rec-body">Protocolo de monitorización sistemática de declaraciones del Kremlin. Escala de escalada retórica trimestral con alertas al nivel político. Responsable: INTCEN / ACT.</div>
+        </div>
+      </li>
+      <li class="rec-item">
+        <div class="rec-num">2</div>
+        <div>
+          <div class="rec-title">Contrainteligencia informativa — Marco SOCE</div>
+          <div class="rec-body">Campañas de fact-checking en Egipto, Argentina, Sri Lanka y Camboya. Plazo: Q4 2026. KPI: 500.000 impresiones mínimas por mercado. Responsable: EEAS / embajadas locales.</div>
+        </div>
+      </li>
+      <li class="rec-item">
+        <div class="rec-num">3</div>
+        <div>
+          <div class="rec-title">Presión jurídica y sanciones</div>
+          <div class="rec-body">Ampliar régimen de sanciones. Apoyo financiero continuo a Bring Kids Back UA. Revisión semestral del listado de sancionados. Responsable: Consejo de la UE.</div>
+        </div>
+      </li>
+      <li class="rec-item">
+        <div class="rec-num">4</div>
+        <div>
+          <div class="rec-title">Repatriación y apoyo humanitario</div>
+          <div class="rec-body">Incrementar financiación a la Coalición Internacional. Establecer canales de retorno vía terceros (Qatar, Turquía, Cruz Roja). Indicador: niños repatriados por trimestre. Responsable: Coalición liderada por Canadá.</div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- LINK TO FULL REPORT -->
+  <a class="detail-link-banner" href="informe_completo.html">
+    <div>
+      <div class="dlb-label">Versión completa del informe</div>
+      <div class="dlb-title">Acceder al análisis detallado — todas las secciones, tablas y 44 referencias →</div>
+    </div>
+    <div class="dlb-arrow">→</div>
+  </a>
+
+  <!-- LINK TO PSYOP ANALYSIS -->
+  <a class="detail-link-banner" href="analisis_documental.html" style="background:#0d0505;border:1px solid rgba(192,57,43,0.35);">
+    <div>
+      <div class="dlb-label" style="color:rgba(255,255,255,0.45);">Análisis PSYOP — Sistema Argos / Propaganda Detector 2</div>
+      <div class="dlb-title" style="color:#fff;"><em style="color:#f87171;">Second Childhood</em> (RT Documentary, 2023) — Deconstrucción técnica integrada →</div>
+    </div>
+    <div class="dlb-arrow" style="color:rgba(255,255,255,0.3);">→</div>
+  </a>
+
+</main>
+
+<footer>
+  <p>Informe de Inteligencia Integrado — UE/OTAN — Junio 2026 — Unclassified / FOUO — Todas las fuentes: OSINT</p>
+  <p style="margin-top:4px;">Fuentes primarias: OHCHR · Yale Humanitarian Research Lab · Parlamento Europeo · CPI · EEAS</p>
+</footer>
+
+</body>
+</html>
