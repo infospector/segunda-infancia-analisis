@@ -209,6 +209,42 @@ td a:hover { text-decoration: underline; }
 .conclusion-card.f4 h4 { color: var(--green); }
 .conclusion-card p { font-size: 0.81rem; color: var(--ink-muted); }
 
+/* ── TRANSCRIPT DROPDOWN ── */
+.transcript-dropdown {
+  background: var(--card); border: 1px solid var(--rule);
+  border-radius: 10px; margin: 2rem 0; overflow: hidden;
+}
+.transcript-header {
+  background: linear-gradient(135deg, #0d0505 0%, #1a0a0a 100%);
+  padding: 1.1rem 1.5rem; cursor: pointer; user-select: none;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; transition: all 0.15s;
+}
+.transcript-header:hover { background: linear-gradient(135deg, #1a0a0a 0%, #2a0a0a 100%); }
+.transcript-header.open { border-bottom: 2px solid var(--accent); }
+.th-text { flex: 1; }
+.th-label { font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 3px; }
+.th-title { font-size: 0.92rem; font-weight: 600; color: #fff; }
+.th-icon { font-size: 1.2rem; color: var(--accent); transition: transform 0.2s; flex-shrink: 0; }
+.th-icon.open { transform: rotate(180deg); }
+.transcript-content {
+  max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+  padding: 0 1.5rem; background: var(--surface);
+}
+.transcript-content.open { max-height: 5000px; padding: 1.5rem; border-top: 1px solid var(--rule); }
+.transcript-text {
+  font-size: 13px; line-height: 1.8; color: var(--ink-muted);
+  font-family: 'Courier New', monospace;
+  white-space: pre-wrap; word-break: break-word;
+  max-height: 600px; overflow-y: auto; padding: 0;
+}
+.transcript-text::-webkit-scrollbar { width: 6px; }
+.transcript-text::-webkit-scrollbar-track { background: var(--surface); }
+.transcript-text::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+.transcript-text::-webkit-scrollbar-thumb:hover { background: var(--blue-mid); }
+.speaker-line { margin-bottom: 0.5rem; }
+.speaker-label { color: var(--accent); font-weight: 700; margin-right: 6px; }
+
 /* ── TRANSCRIPT BANNER ── */
 .transcript-banner {
   background: #0d0505; border: 1px solid rgba(192,57,43,0.3);
@@ -708,6 +744,60 @@ footer { border-top: 1px solid var(--rule); background: var(--card); padding: 1.
         </table>
       </div>
 
+      <!-- TRANSCRIPCIÓN DROPDOWN -->
+      <div class="transcript-dropdown">
+        <div class="transcript-header" onclick="toggleTranscript(event)">
+          <div class="th-text">
+            <div class="th-label">📄 Fuente primaria</div>
+            <div class="th-title">Transcripción Original del Documental (Русский)</div>
+          </div>
+          <span class="th-icon">▼</span>
+        </div>
+        <div class="transcript-content">
+          <div class="transcript-text">
+[Надя Якушева] Я сплю здесь
+[Надя] Я здесь обуваюсь, одеваюсь, гуляю, ем... Я играю
+[Софья Зяблева] Это не было хорошо. Все рядом с нами упало
+[Богдан Ковалёв] У нас были подушки и одеяла в коридоре, на всякий случай, чтобы осколки стекла не попали в нас.
+[Лидия Ковалёва] Мы уложили детей спать в их одежде
+[Ростислав Коломоец] Был огромный взрыв, когда я пошел в танцевальный кружок в Донецке
+
+[ЛИДИЯ КОВАЛЁВА, ОПЕКУН]
+Когда мы уезжали... Я обзвонила всех знакомых, чтобы попросить помощи, чтобы уехать в другое место, не в лагеря или еще куда-то, и Коля был первым, кто ответил.
+
+[МАРИЯ ЛЬВОВА-БЕЛОВА, Уполномоченный по правам ребенка]
+Как вы, наверное, знаете, Мне инкриминируют безумное число: 16 000 детей. Кстати, они до сих пор не могут договориться, сколько их, но... мы точно знаем, что Украина не проводила эвакуацию детей. Украинская армия использовала детей в качестве живого щита. Они помещали их в окна, где работали снайперы.
+
+[ТАТЬЯНА ШЕРЕМЕТЬЕВА]
+Чтобы они не забрали ее силой. Когда украинские солдаты или добровольцы спускались в подвал, родители прятали детей в задней комнате.
+
+[ДИАНА]
+Волонтеры пришли. В самом деле, это были украинские добровольцы. Они могли забирать детей насильно. Насильно.
+
+[АРТУР]
+Я еду в Ростов на конкурс бальных танцев. Я надеюсь, что мы займем первые места.
+
+[ДИКТОР]
+Эвакуация детей в безопасное место в России была названа геноцидом Парламентской Ассамблеей Совета Европы, даже назвала цифру: якобы 19 000. Мама Лидия говорит, что это неправда.
+
+[ЛИДИЯ]
+Ни один ребенок не был насильно отобран. Это неправда. Ни один. Большинство из них были найдены своими родителями. Многие были подобраны. Родственники, живущие в Украине, приезжали и забирали детей. Нет, никого не забирали насильно.
+
+[ФИНАЛЬНАЯ ESCENA - ЛИДИЯ]
+Мы теперь одна семья... одна семья с Россией! Я верю, что... именно так мы должны объединиться, как одна семья. И скоро, я думаю, эта семья будет расти и процветать. Мы все будем жить в мире и благополучии.
+
+───────────────────────────────────────────────────────────────────
+NOTA: Esta es una SELECCIÓN de diálogos clave del documental
+para análisis técnico de manipulación narrativa.
+
+Transcripción completa disponible en: <a href="documentary-transcription.txt" style="color:var(--blue-mid)">transcription.txt</a> 
+Fuente: rtdoc.tv/films/653-donbass-restoring-childhood
+Acceso: Público | Producción: RT Documentary | Año: 2023
+───────────────────────────────────────────────────────────────────
+          </div>
+        </div>
+      </div>
+
       <!-- S11 CONCLUSIÓN -->
       <h2 class="sec sec-anchor" id="conclusion">11. Conclusión: El Documental como Artefacto de Inteligencia</h2>
 
@@ -724,7 +814,7 @@ footer { border-top: 1px solid var(--rule); background: var(--card); padding: 1.
         <div class="callout-label">Clave semántica de toda la operación</div>
         <p>«Мы теперь одна семья... одна семья с Россией! Я верю, что... именно так мы должны объединиться, как одна семья.»<br><br>«Somos ahora una familia... ¡una familia con Rusia! Creo que... así es como debemos unirnos, como una sola familia.» — Lidiia Kovaliova, frase de cierre del documental</p>
       </div>
-      <p style="margin-top:1rem;">No es el cierre emocional de una historia de acogida: es la declaración explícita del objetivo político de la deportación sistemática que el documental ha pasado 50 minutos intentando hacer invisible.</p>
+      <p style="margin-top:1rem;">No es el cierre emocional de una historia de acogida: es la declaración explícita del objetivo político de la deportación sistemática que el documental ha pasado los 30 minutos intentando hacer invisible.</p>
 
       <!-- TRANSCRIPCIÓN -->
       <h2 class="sec sec-anchor" id="transcripcion">Transcripción Original</h2>
@@ -853,6 +943,18 @@ footer { border-top: 1px solid var(--rule); background: var(--card); padding: 1.
 </div>
 
 <script>
+function toggleTranscript(event) {
+  event.preventDefault();
+  const header = event.currentTarget;
+  const content = header.nextElementSibling;
+  const icon = header.querySelector('.th-icon');
+  
+  header.classList.toggle('open');
+  content.classList.toggle('open');
+  icon.classList.toggle('open');
+}
+
+// Scrollspy para sidebar
 const links = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('.sec-anchor');
 const observer = new IntersectionObserver(entries => {
